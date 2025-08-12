@@ -11,6 +11,7 @@ val appModule = module {
 val viewModelModule = module {
 
     viewModel { CreateUserViewModel(androidApplication(),get()) }
+    viewModel { DetailUserViewModel (androidApplication(),get()) }
     viewModel { ListUserViewModel(androidApplication(),get()) }
     viewModel { ListDesativeUserViewModel(androidApplication(),get()) }
 

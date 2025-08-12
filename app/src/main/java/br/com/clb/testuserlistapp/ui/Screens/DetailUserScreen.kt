@@ -22,6 +22,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,9 +49,14 @@ fun DetailUSerScreen(
     city: String?
 ) {
 
+    val viewModel: DetailUserViewModel = koinInject()
+    val state by viewModel.state.collectAsState()
+
     var buttonSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
+
+
 
     Column(
         modifier = Modifier
@@ -135,29 +142,29 @@ fun DetailUSerScreen(
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                value = name.toString(),
-                onValueChange = {  },
+                value = state.name,
+                onValueChange = {  viewModel.onNameChange(it) },
             )
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                value = birthDate.toString(),
-                onValueChange = {  },
+                value = state.birthDate,
+                onValueChange = { viewModel.onBirthDateChange(it) },
             )
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                value = cpf.toString(),
-                onValueChange = {  },
+                value = state.cpf.toString(),
+                onValueChange = { viewModel.onCPFChange(it) },
             )
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                value = city.toString(),
-                onValueChange = {  },
+                value = state.city,
+                onValueChange = {viewModel.onCityChange(it)  },
             )
 
 
@@ -174,6 +181,7 @@ fun DetailUSerScreen(
                         if (!sheetState.isVisible) {
                             buttonSheet = false
                         }
+                        viewModel.UpdateUser()
                         navController.navigate("atv")
                     }
                 }) {
