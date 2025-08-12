@@ -10,16 +10,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -56,81 +62,100 @@ fun DetailUSerScreen(
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
 
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Detalhes do Usuário") },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navController.navigate("atv")
+                    }) {
+                        Icon(Icons.Filled.ArrowBack, "Back")
+                    }
+                }
+            )
+        }
 
+    ) { innerPadding ->
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-    ) {
-        Card(
+        Column(
             modifier = Modifier
-                .padding(8.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.Cyan
-            ),
-            shape = shape,
-            border = BorderStroke(5.dp, Color.Black),
-
-
-            ) {
-
-            Row(
+                .fillMaxWidth()
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Card(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-            ) {
-                Column(
+                    .padding(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Cyan
+                ),
+                shape = shape,
+                border = BorderStroke(5.dp, Color.Black),
 
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+
                 ) {
-                    Text(
-                        text = "Nome: ${name}",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Nasc: ${birthDate}",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                    )
-                    Text(
-                        text = "CPF: ${cpf}",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                    )
-                    Text(
-                        text = "Cidade: ${city}",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                    )
-                    Spacer(modifier = Modifier.height(32.dp))
 
-                    Button(
-                        modifier = Modifier
-                            .size(90.dp),
-                        colors = ButtonDefaults.buttonColors(Color.Black),
-                        onClick = {
-                            buttonSheet = !buttonSheet
-                        },
+                Row(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
+                ) {
+                    Column(
+
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            "Editar",
-                            textAlign = TextAlign.Center,
-                            fontSize = 12.sp
+                            text = "Nome: ${name}",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-                    }
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Nasc: ${birthDate}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                        )
+                        Text(
+                            text = "CPF: ${cpf}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                        )
+                        Text(
+                            text = "Cidade: ${city}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                        )
+                        Spacer(modifier = Modifier.height(32.dp))
 
+                        Button(
+                            modifier = Modifier
+                                .size(90.dp),
+                            colors = ButtonDefaults.buttonColors(Color.Black),
+                            onClick = {
+                                buttonSheet = !buttonSheet
+                            },
+                        ) {
+                            Text(
+                                "Editar",
+                                textAlign = TextAlign.Center,
+                                fontSize = 12.sp
+                            )
+                        }
+
+                    }
                 }
             }
+
+
         }
 
 
     }
+
+
 
     if (buttonSheet) {
         ModalBottomSheet(
@@ -143,7 +168,7 @@ fun DetailUSerScreen(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 value = state.name,
-                onValueChange = {  viewModel.onNameChange(it) },
+                onValueChange = { viewModel.onNameChange(it) },
             )
 
             OutlinedTextField(
@@ -164,7 +189,7 @@ fun DetailUSerScreen(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 value = state.city,
-                onValueChange = {viewModel.onCityChange(it)  },
+                onValueChange = { viewModel.onCityChange(it) },
             )
 
 
