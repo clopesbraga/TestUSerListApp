@@ -2,9 +2,6 @@ package br.com.clb.testuserlistapp
 
 
 import android.R
-import android.net.Uri
-import androidx.compose.animation.core.copy
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,6 +29,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,19 +42,27 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import org.koin.compose.koinInject
 import androidx.core.net.toUri
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun ListScreen(navController: NavController) {
 
     val viewModel: ListUserViewModel = koinInject()
     val state by viewModel.state.collectAsState()
+    var flagDetail by remember { mutableStateOf(false) }
 
 
     Scaffold(
 
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("crt") }
+                onClick = {
+
+                    flagDetail = !flagDetail
+
+
+                }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
@@ -85,7 +92,7 @@ fun ListScreen(navController: NavController) {
 
         }
 
-        if(state.isSuccess){
+        if (state.isSuccess) {
 
             LazyColumn(
                 modifier = Modifier
@@ -102,7 +109,9 @@ fun ListScreen(navController: NavController) {
                     Card(
                         modifier = Modifier
                             .padding(8.dp)
-                            .clickable {}
+                            .clickable {
+                                flagDetail = !flagDetail
+                            }
                     ) {
 
                         Row(
@@ -148,8 +157,8 @@ fun ListScreen(navController: NavController) {
                                 )
                                 Switch(
                                     checked = user.status,
-                                    onCheckedChange = {newStatus ->
-                                        viewModel.onUserStatusChange(user.cpf,  newStatus)
+                                    onCheckedChange = { newStatus ->
+                                        viewModel.onUserStatusChange(user.cpf, newStatus)
 
                                     }
                                 )
@@ -159,12 +168,29 @@ fun ListScreen(navController: NavController) {
 
                     }
 
+                    if (flagDetail) {
+                        sendDetailUser(navController, user.name,user.birthDate,user.cpf,user.city)
+                    }
+
                 }
 
 
             }
+
+
         }
 
     }
+
+
+}
+
+fun sendDetailUser(navController: NavController,name: String,birthDate: String,cpf: Int,city: String) {
+    val encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString())
+    val encodedBirthDate = URLEncoder.encode(birthDate, StandardCharsets.UTF_8.toString())
+    val encodedCity = URLEncoder.encode(city, StandardCharsets.UTF_8.toString())
+    val cpfString = cpf.toString()
+
+    navController.navigate("det/name/$encodedName/birthDate/$encodedBirthDate/cpf/$cpfString/city/$encodedCity")
 
 }

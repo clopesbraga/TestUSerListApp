@@ -9,12 +9,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 
-class ListUserViewModel(
+class ListDesativeUserViewModel(
     private val application: Application,
     private val repository: UserRepository
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<ListUserState> = MutableStateFlow(ListUserState())
+    private val _state: MutableStateFlow<ListDesativeUserState> = MutableStateFlow(ListDesativeUserState())
     val state = _state.asStateFlow()
 
     init {
@@ -25,7 +25,7 @@ class ListUserViewModel(
     fun loadUsers() {
         viewModelScope.launch{
             _state.update {it.copy(isloading = true)}
-            repository.getAllActive().collect{users ->
+            repository.getAllDesative().collect{users ->
                 _state.update { currentState ->
                     currentState.copy(
                         users = users,

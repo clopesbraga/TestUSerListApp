@@ -24,9 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.navigation.navOptions
 import br.com.clb.testuserlistapp.ui.theme.TestUserListAppTheme
 
@@ -76,6 +78,24 @@ class MainActivity : ComponentActivity() {
                         composable("crt") {
                             showBottomBar.value = false
                             CreateUserScreen(navController)
+                        }
+                        composable (
+                            route = "det/name/{name}/birthDate/{birthDate}/cpf/{cpf}/city/{city}",
+                            arguments = listOf(
+                                navArgument("name") {type =NavType.StringType } ,
+                                navArgument("birthDate") {type =NavType.StringType }
+                                ,navArgument("cpf") {type =NavType.IntType }
+                                ,navArgument("city") {type =NavType.StringType }
+                            )
+
+                        ){ backStackEntry->
+                            val name = backStackEntry.arguments?.getString("name")
+                            val birthDate = backStackEntry.arguments?.getString("birthDate")
+                            val cpf = backStackEntry.arguments?.getString("cpf")
+                            val city = backStackEntry.arguments?.getString("city")
+
+                            showBottomBar.value = false
+                            DetailUSerScreen(navController,name, birthDate, cpf, city)
                         }
 
                     }
