@@ -12,17 +12,19 @@ class DetailUserViewModel(
     private val repository: UserRepository
 ) : ViewModel() {
 
+    private var originalCpf: String = ""
     private val _state: MutableStateFlow<DetailUserState> = MutableStateFlow(DetailUserState())
     val state = _state
 
-    init {
+    fun initializeUserDetails(name: String?, age: String?, cpf: String?, city: String?) {
+        originalCpf = cpf ?: ""
         _state.update { currentState ->
             currentState.copy(
-                name = _state.value.name,
-                age =  _state.value.age,
-                cpf =  _state.value.cpf,
-                city = _state.value.city,
-                status = true
+                name = name ?: "",
+                age = age ?: "",
+                cpf = originalCpf,
+                city = city ?: "",
+                status = currentState.status
             )
         }
     }
@@ -36,12 +38,6 @@ class DetailUserViewModel(
     fun onAgeChange(age: String) {
         _state.update { currentState ->
             currentState.copy(age = age)
-        }
-    }
-
-    fun onCPFChange(cpf: String) {
-        _state.update { currentState ->
-            currentState.copy(cpf = cpf)
         }
     }
 

@@ -7,5 +7,5 @@ data class DetailUserState(
     val cpf: String="",
     val city: String = "",
     val photoUri: String = "",
-    val status: Boolean = false
+    val status: Boolean = true
 )

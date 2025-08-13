@@ -27,6 +27,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -60,6 +61,10 @@ fun DetailUSerScreen(
     var buttonSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect ( name,  age, cpf,city) {
+        viewModel.initializeUserDetails(name, age, cpf, city)
+    }
 
     Scaffold(
         topBar = {
@@ -160,8 +165,7 @@ fun DetailUSerScreen(
             UpdateUserTextField(state.name, onNameChange = { viewModel.onNameChange(it) })
             Text("Editar Idade")
             UpdateUserTextField(state.age, onNameChange = { viewModel.onAgeChange(it) })
-            Text("Editar CPF")
-            UpdateUserTextField(state.cpf, onNameChange = { viewModel.onCPFChange(it) })
+
             Text("Editar Cidade")
             UpdateUserTextField(state.city, onNameChange = { viewModel.onCityChange(it) })
 
