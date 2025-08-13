@@ -44,9 +44,13 @@
 |----------|----------|----------|----------|
 | <img width="1440" height="3120" alt="lista_usuarios_ativos" src="https://github.com/user-attachments/assets/c9d03ba3-81e9-4734-843e-72fccc6be62f" />| <img width="1440" height="3120" alt="lista_usuarios_desativados" src="https://github.com/user-attachments/assets/6a884de6-d5cf-425c-bd9b-3d7a23c3c450" />| <img width="1440" height="3120" alt="cadastrar_usuarios" src="https://github.com/user-attachments/assets/d7f53cd5-aebe-4b81-b478-4d2fe5e4f7d3" />|<img width="1440" height="3120" alt="alteracao_cadastro" src="https://github.com/user-attachments/assets/c49ce160-09a7-4e93-8199-d603ced32d3b" />
 
-| Video | 
-|-------|
-|[Screen_recording_20250813_133120.webm](https://github.com/user-attachments/assets/b24783bb-0fd8-4d74-9b33-be31bae3e963)|
+| Video 1| Video 2 | Video 3 |
+|----------|----------|----------|
+|[Screen_recording_20250813_133120.webm](https://github.com/user-attachments/assets/b24783bb-0fd8-4d74-9b33-be31bae3e963) | [Screen_recording_20250813_134029.webm](https://github.com/user-attachments/assets/fa8b1cdb-b8f4-462f-b132-c9ef1d5c7b41)|[Screen_recording_20250813_134514.webm](https://github.com/user-attachments/assets/b23a07f0-f46d-43a3-88e9-3c4c68845bbd)|<img width="1440" height="3120" alt="alteracao_cadastro" src="https://github.com/user-attachments/assets/c49ce160-09a7-4e93-8199-d603ced32d3b" />|
+
+
+
+
 
 
 ## Como baixar o apk.
@@ -59,7 +63,7 @@ Tendo realizado o download do apk para utilizá-lo é necessário realizar os se
 
 - Deixar o celular no modo desenvolvedor
   
-   - No seu device vá em configurações/ settings.[Screen_recording_20250813_133120.webm](https://github.com/user-attachments/assets/35f6d684-dbd5-4bb4-a5b8-f5a3d70085e4)
+   - No seu device vá em configurações/ settings.
 
    - Role a tela até sobre o telefone e toque em informações de software
    - desça a tela até a opção 'número de compilação'
