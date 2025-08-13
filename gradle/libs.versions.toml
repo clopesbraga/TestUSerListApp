@@ -17,6 +17,7 @@ roomRuntime = "2.7.2"
 roomCompiler = "2.7.2"
 koinAndroid = "4.1.0"
 koinAndroidxCompose = "4.1.0"
+media3CommonKtx = "1.8.0"
 
 
 [libraries]
@@ -44,6 +45,7 @@ androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "ro
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
 
 
 [plugins]

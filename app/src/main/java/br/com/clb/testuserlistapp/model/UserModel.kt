@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "User")
 data class UserModel(
 
-    @PrimaryKey(autoGenerate = false) val cpf: Int,
+    @PrimaryKey(autoGenerate = false) val cpf: String,
     @ColumnInfo val name: String,
-    @ColumnInfo val birthDate: String,
+    @ColumnInfo val age: String,
     @ColumnInfo val city: String,
     @ColumnInfo val photo: String,
     @ColumnInfo val status: Boolean

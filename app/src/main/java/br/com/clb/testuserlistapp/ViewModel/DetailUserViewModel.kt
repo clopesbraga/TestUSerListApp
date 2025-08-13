@@ -1,6 +1,5 @@
 package br.com.clb.testuserlistapp
 
-import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +9,6 @@ import kotlinx.coroutines.launch
 
 
 class DetailUserViewModel(
-    private val application: Application,
     private val repository: UserRepository
 ) : ViewModel() {
 
@@ -20,11 +18,10 @@ class DetailUserViewModel(
     init {
         _state.update { currentState ->
             currentState.copy(
-                name = "Cleiton",
-                birthDate = "21/07/82",
-                cpf = 123456789,
-                city = "São Paulo",
-                photoUri = "",
+                name = _state.value.name,
+                age =  _state.value.age,
+                cpf =  _state.value.cpf,
+                city = _state.value.city,
                 status = true
             )
         }
@@ -36,15 +33,15 @@ class DetailUserViewModel(
         }
     }
 
-    fun onBirthDateChange(birthDate: String) {
+    fun onAgeChange(age: String) {
         _state.update { currentState ->
-            currentState.copy(birthDate = birthDate)
+            currentState.copy(age = age)
         }
     }
 
     fun onCPFChange(cpf: String) {
         _state.update { currentState ->
-            currentState.copy(cpf = cpf.toInt())
+            currentState.copy(cpf = cpf)
         }
     }
 
@@ -59,6 +56,7 @@ class DetailUserViewModel(
             currentState.copy(status = status)
         }
     }
+
     fun onPhotoUriChange(uri: Uri?) {
         _state.update { it.copy(photoUri = uri.toString()) }
     }
@@ -68,7 +66,7 @@ class DetailUserViewModel(
         viewModelScope.launch {
             val user = UserModel(
                 name = state.value.name,
-                birthDate = state.value.birthDate,
+                age = state.value.age,
                 cpf = state.value.cpf,
                 city = state.value.city,
                 photo = state.value.photoUri,

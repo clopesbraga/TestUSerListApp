@@ -1,8 +1,8 @@
 package br.com.clb.testuserlistapp
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.media3.common.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 
 class ListDesativeUserViewModel(
-    private val application: Application,
     private val repository: UserRepository
 ) : ViewModel() {
 
@@ -39,7 +38,7 @@ class ListDesativeUserViewModel(
     }
 
 
-    fun onUserStatusChange(userCpf: Int, newStatus: Boolean) {
+    fun onUserStatusChange(userCpf: String, newStatus: Boolean) {
        viewModelScope.launch {
 
            val userToUpdate = _state.value.users.find { it.cpf == userCpf}
@@ -50,6 +49,8 @@ class ListDesativeUserViewModel(
                    repository.update(updatedUser)
 
                }catch (e: Exception){
+
+                   Log.e("ListUserViewModel", "Erro ao atualizar o status do usuário",e.fillInStackTrace())
 
                }
            }

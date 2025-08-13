@@ -12,23 +12,23 @@ class UserRepository(private val context: Context) {
         base.insert(user)
     }
 
-    suspend fun update(user: UserModel) {
+     fun update(user: UserModel) {
         base.update(user)
     }
 
-    suspend fun delete(user: UserModel) {
+     fun delete(user: UserModel) {
         base.delete(user)
     }
 
-    suspend fun getAllUsers(): Flow<List<UserModel>> {
+     fun getAllUsers(): Flow<List<UserModel>> {
         return base.getAllUsers()
     }
 
-    suspend fun getAllActive(): Flow<List<UserModel>> {
+     fun getAllActive(): Flow<List<UserModel>> {
         return base.getAllActive()
     }
 
-    suspend fun getAllDesative(): Flow<List<UserModel>> {
+     fun getAllDesative(): Flow<List<UserModel>> {
         return base.getAllDesative()
     }
 

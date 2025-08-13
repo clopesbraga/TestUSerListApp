@@ -4,9 +4,7 @@ package br.com.clb.testuserlistapp
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.launch
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,19 +20,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButtonDefaults.colors
 import androidx.compose.material3.Text
@@ -51,7 +46,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import org.koin.compose.koinInject
@@ -115,13 +109,13 @@ fun CreateUserScreen(navController: NavController) {
 
             Box(
                 modifier = Modifier
-                    .size(120.dp) // Tamanho um pouco maior para a foto
+                    .size(120.dp)
                     .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surfaceVariant) // Fundo para quando não há imagem
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
                     .clickable {
-                        imagePickerLauncher.launch("image/*") // Lança o seletor de imagens
+                        imagePickerLauncher.launch("image/*")
                     }
-                    .padding(4.dp) // Pequeno padding interno para a borda não cortar a imagem
+                    .padding(4.dp)
                     .border(
                         BorderStroke(
                             2.dp,
@@ -138,8 +132,8 @@ fun CreateUserScreen(navController: NavController) {
                         .fillMaxSize()
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop,
-                    placeholder = painterResource(id = R.drawable.ic_launcher_background), // Opcional
-                    error = painterResource(id = R.drawable.ic_launcher_background) // Opcional
+                    placeholder = painterResource(id = R.drawable.ic_launcher_background),
+                    error = painterResource(id = R.drawable.ic_launcher_background)
                 )
             }
 
@@ -150,74 +144,53 @@ fun CreateUserScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color.White
+                    containerColor = Color(0xFF009688)
                 ),
                 shape = shape,
-                border = BorderStroke(5.dp, Color.Green)
+                border = BorderStroke(5.dp, Color.Black)
             ) {
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
                 ) {
-                    Text(text = "Nome")
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        value = state.name,
-                        onValueChange = { viewModel.onNameChange(it) },
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color.Black,
-                            unfocusedBorderColor = Color.Black,
-                            disabledBorderColor = Color.Black,
-                            cursorColor = Color.Black,
-                            focusedTextColor = Color.Black,
-                        )
+                    Text(text = "Nome", color = Color.White)
+                    RegisterTextField(
+                        name = state.name,
+                        onNameChange = { viewModel.onNameChange(it) }
                     )
 
-                    Text(text = "Nascimento")
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        value = state.birthDate,
-                        onValueChange = { viewModel.onBirthDateChange(it) },
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color.Black,
-                            unfocusedBorderColor = Color.Black,
-                            cursorColor = Color.Black,
-                        )
-                    )
-                    Text(text = "CPF")
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        value = state.cpf.toString(),
-                        onValueChange = { viewModel.onCPFChange(it) },
+                    Text(text = "CPF",color = Color.White)
+                    RegisterTextField(
+                        name = state.cpf,
+                        onNameChange = { viewModel.onCPFChange(it) }
+
                     )
 
-                    Text(text = "Cidade")
-                    OutlinedTextField(
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        value = state.city,
-                        onValueChange = { viewModel.onCityChange(it) },
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color.Black,
-                            unfocusedBorderColor = Color.Black,
-                            disabledBorderColor = Color.Black,
-                            cursorColor = Color.Black,
-                            focusedTextColor = Color.Black,
-                        )
+                    Text(text = "Idade",color = Color.White)
+                    RegisterTextField(
+                        name = state.age,
+                        onNameChange = { viewModel.onAgeChange(it) }
                     )
+
+                    Text(text = "Cidade",color = Color.White)
+                    RegisterTextField(
+                        name = state.city,
+                        onNameChange = { viewModel.onCityChange(it) }
+                    )
+
                 }
 
             }
 
             Button(
-                modifier = Modifier.padding(32.dp),
+                modifier = Modifier
+                    .padding(32.dp)
+                    .size(90.dp),
                 onClick = {
                     viewModel.registerUser()
                     navController.navigate("atv")
-                }
+                },
+                colors = ButtonDefaults.buttonColors(Color.Black),
             ) {
                 Text(text = "Salvar")
             }

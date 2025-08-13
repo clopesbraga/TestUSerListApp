@@ -80,22 +80,22 @@ class MainActivity : ComponentActivity() {
                             CreateUserScreen(navController)
                         }
                         composable (
-                            route = "det/name/{name}/birthDate/{birthDate}/cpf/{cpf}/city/{city}",
+                            route = "det/name/{name}/age/{age}/cpf/{cpf}/city/{city}",
                             arguments = listOf(
                                 navArgument("name") {type =NavType.StringType } ,
-                                navArgument("birthDate") {type =NavType.StringType }
-                                ,navArgument("cpf") {type =NavType.IntType }
+                                navArgument("age") {type =NavType.StringType }
+                                ,navArgument("cpf") {type =NavType.StringType }
                                 ,navArgument("city") {type =NavType.StringType }
                             )
 
                         ){ backStackEntry->
                             val name = backStackEntry.arguments?.getString("name")
-                            val birthDate = backStackEntry.arguments?.getString("birthDate")
+                            val age = backStackEntry.arguments?.getString("age")
                             val cpf = backStackEntry.arguments?.getString("cpf")
                             val city = backStackEntry.arguments?.getString("city")
 
                             showBottomBar.value = false
-                            DetailUSerScreen(navController,name, birthDate, cpf, city)
+                            DetailUSerScreen(navController,name, age, cpf, city)
                         }
 
                     }

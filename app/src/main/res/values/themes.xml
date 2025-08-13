@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <style name = "Theme.TestUserSplashTheme" parent = "Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/teal_700</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.TestUserListApp</item>
+
+    </style>
+
     <style name="Theme.TestUserListApp" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

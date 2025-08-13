@@ -1,7 +1,7 @@
 package br.com.clb.testuserlistapp
 
-import android.app.Application
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 
 class CreateUserViewModel(
-    private val application: Application,
     private val repository: UserRepository
 ) : ViewModel() {
 
@@ -20,10 +19,10 @@ class CreateUserViewModel(
     init {
         _state.update { currentState ->
             currentState.copy(
-                name = "Cleiton",
-                birthDate = "21/07/82",
-                cpf = 123456789,
-                city = "São Paulo",
+                name = "",
+                age = "",
+                cpf = "",
+                city = "",
                 photoUri = "",
                 status = true
             )
@@ -36,15 +35,15 @@ class CreateUserViewModel(
         }
     }
 
-    fun onBirthDateChange(birthDate: String) {
+    fun onAgeChange(age: String) {
         _state.update { currentState ->
-            currentState.copy(birthDate = birthDate)
+            currentState.copy(age = age)
         }
     }
 
     fun onCPFChange(cpf: String) {
         _state.update { currentState ->
-            currentState.copy(cpf = cpf.toInt())
+            currentState.copy(cpf = cpf)
         }
     }
 
@@ -54,28 +53,26 @@ class CreateUserViewModel(
         }
     }
 
-    fun onStatusChange(status: Boolean) {
-        _state.update { currentState ->
-            currentState.copy(status = status)
-        }
-    }
     fun onPhotoUriChange(uri: Uri?) {
         _state.update { it.copy(photoUri = uri.toString()) }
     }
-
 
     fun registerUser() {
         viewModelScope.launch {
             val user = UserModel(
                 name = state.value.name,
-                birthDate = state.value.birthDate,
+                age = state.value.age,
                 cpf = state.value.cpf,
                 city = state.value.city,
                 photo = state.value.photoUri,
                 status = state.value.status
             )
-            repository.insert(user)
+            try {
+                repository.insert(user)
+
+            } catch (e: Exception) {
+                Log.e("CreateUserViewModel", "Erro ao inserir usuário", e.fillInStackTrace())
+            }
         }
     }
-
 }

@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -20,12 +20,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -50,7 +49,7 @@ import org.koin.compose.koinInject
 fun DetailUSerScreen(
     navController: NavController,
     name: String?,
-    birthDate: String?,
+    age: String?,
     cpf: String?,
     city: String?
 ) {
@@ -65,14 +64,28 @@ fun DetailUSerScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Detalhes do Usuário") },
+                title = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Detalhes do Usuário",
+                            color = Color.White,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                },
                 navigationIcon = {
                     IconButton(onClick = {
                         navController.navigate("atv")
                     }) {
-                        Icon(Icons.Filled.ArrowBack, "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
                     }
-                }
+                },
+                colors = topAppBarColors(
+                    containerColor = Color(0xFF009688)
+                ),
             )
         }
 
@@ -89,7 +102,7 @@ fun DetailUSerScreen(
                 modifier = Modifier
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color.Cyan
+                    containerColor = Color(0xFF009688)
                 ),
                 shape = shape,
                 border = BorderStroke(5.dp, Color.Black),
@@ -103,31 +116,16 @@ fun DetailUSerScreen(
                         .fillMaxWidth()
                 ) {
                     Column(
-
+                        modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Text(
-                            text = "Nome: ${name}",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = "Nasc: ${birthDate}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                        )
-                        Text(
-                            text = "CPF: ${cpf}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                        )
-                        Text(
-                            text = "Cidade: ${city}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                        )
+
+                        UserDetailTextView("Nome", name)
+                        UserDetailTextView("Idade", age +" anos")
+                        UserDetailTextView("CPF", cpf)
+                        UserDetailTextView("Cidade", city)
+
                         Spacer(modifier = Modifier.height(32.dp))
 
                         Button(
@@ -148,14 +146,9 @@ fun DetailUSerScreen(
                     }
                 }
             }
-
-
         }
 
-
     }
-
-
 
     if (buttonSheet) {
         ModalBottomSheet(
@@ -163,35 +156,14 @@ fun DetailUSerScreen(
             sheetState = sheetState
         ) {
 
-
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                value = state.name,
-                onValueChange = { viewModel.onNameChange(it) },
-            )
-
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                value = state.birthDate,
-                onValueChange = { viewModel.onBirthDateChange(it) },
-            )
-
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                value = state.cpf.toString(),
-                onValueChange = { viewModel.onCPFChange(it) },
-            )
-
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                value = state.city,
-                onValueChange = { viewModel.onCityChange(it) },
-            )
-
+            Text("Editar Usuário")
+            UpdateUserTextField(state.name, onNameChange = { viewModel.onNameChange(it) })
+            Text("Editar Idade")
+            UpdateUserTextField(state.age, onNameChange = { viewModel.onAgeChange(it) })
+            Text("Editar CPF")
+            UpdateUserTextField(state.cpf, onNameChange = { viewModel.onCPFChange(it) })
+            Text("Editar Cidade")
+            UpdateUserTextField(state.city, onNameChange = { viewModel.onCityChange(it) })
 
             Button(
                 modifier = Modifier
