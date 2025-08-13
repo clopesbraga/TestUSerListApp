@@ -37,7 +37,7 @@
 ## Features criadas
 
 - [x] Cadastro de usuário
-- [X] Captura de tela 
+- [X] Captura de imagem da galeria do celular
 - [x] Alterar cadastro
 - [x] Ativar ou desativar o usuário do cadastro
 - [X] Mostrar a lista de usuários ativos ou desativados
