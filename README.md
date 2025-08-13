@@ -70,4 +70,4 @@ Tendo realizado o download do apk para utilizá-lo é necessário realizar os se
      
 
 ## Observações do Projeto
-🚧  No momento estou realizando ajustes para busca da posição geográfica, no momento estou enfrentando problemas na permissão, mesmo eu tendo feito isso em outros projetos onde geralmente o problema era que no emulador que não tinha memória de alguma localização sendo necessário somente entrar no google maps para resolver o problema, dessa vez ele continua ocorrendo então estou na análise para entender o que pode estar acontecendo. 🚧
+🚧  Em andamento 🚧
