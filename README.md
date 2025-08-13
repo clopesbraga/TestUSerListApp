@@ -24,6 +24,10 @@
    * [Koin:](https://insert-koin.io/)
      Escolhi utilizar o Koin devido a sua facilidade em aprender e velocidade na realização do build.
 
+   * [Coil:](https://coil-kt.github.io/coil/)
+      Para conseguir puxar as imagens da galeria do celular eu utilizei essa biblioteca devido ser muito pratica em utilizar com o Jetpack e por ja ser testada em outros projetos que eu fiz
+      sendo que ela também já esta a muito tempo sendo utilizada por outros desenvolvedores também o que me deu mais segurança em utilizar ela.
+   
      
    * [JetPack Compose:](https://developer.android.com/develop/ui/compose/documentation?hl=pt-br)
      O Jetpack oferece uma grande possibilidade na criação de telas junto com controle dos elementos podendo fazer telas muito bonitas e responsívas
@@ -33,9 +37,16 @@
 ## Features criadas
 
 - [x] Cadastro de usuário
+- [X] Captura de tela 
 - [x] Alterar cadastro
 - [x] Ativar ou desativar o usuário do cadastro
 - [X] Mostrar a lista de usuários ativos ou desativados
+
+Todas esssas funcionalidades foram desenvolvidas com base no realizar chamadas ao banco de dados, como o Room e bastante leve para o celular 
+
+## Demonstração
+
+  Para mostrar como ficou o resultado do projeto segue abaixo prints e videos onde demonstro como o aplicativo ficou.
 
 | Lista Ativos | Lista Desativados | Registro | Atualização|
 |----------|----------|----------|----------|
