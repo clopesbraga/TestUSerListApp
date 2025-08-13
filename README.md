@@ -42,7 +42,7 @@
 
 | Lista Ativos | Lista Desativados | Registro | Atualização|
 |----------|----------|----------|----------|
-|![Screenshot_20240715_165600](https://github.com/user-attachments/assets/966af895-12b5-43f0-9959-11b478d78e6a)|![Screenshot_20240715_170801](https://github.com/user-attachments/assets/48db9c05-6ec2-49ca-a00b-90decdbb4d35)| ![Screenshot_20240715_171259](https://github.com/user-attachments/assets/5a97eb4e-cd85-4425-823b-ed85bd29ea9d))|![Screenshot_20240715_171917](https://github.com/user-attachments/assets/9def659c-391e-4fd9-a8c2-1a8982f24147)
+||||
 
 
 
