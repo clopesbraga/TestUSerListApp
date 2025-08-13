@@ -12,10 +12,7 @@
 
 ## Tecnologias utilizadas e minhas considerações
 <!--ts-->
-   * [Firebase:](https://firebase.google.com/docs?hl=pt&authuser=0&_gl=1*16m4l23*_ga*MTgzMjQzNjk3MS4xNzEwNDIyNzA5*_ga_CW55HF8NVT*MTcxOTkzODgwOC4yMDYuMS4xNzE5OTM4ODE5LjQ5LjAuMA..)
-     Escolhi o Firebase para utilização da autenticação do usuário
-     pensando na facilidade da implementação e uso dele no projeto.Outra vantagem em que pensei foi na possiblidade de utilizar seus outros serviços como banco de dados.
-   
+
    * [Room Database:](https://developer.android.com/training/data-storage/room?hl=pt-br)
      Considerei utilizar o Room Database para criar o banco de dados local  devido ele já ser a muito tempo homologado  pelo google
      oferecendo uma grande praticidade para criar as tabelas e utilização dos métodos padrão como salvar, atualizar e deletar.
