@@ -1,7 +1,20 @@
 ## Test User List
 
-- Projeto realizado para processo seletivo da empresa Hexagon.
-- Meu intuito nesse projeto é de mostrar os meus conhecimentos no desenvolvimento de software.
+  | Item                           | Detalhes                                                                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Objetivo**                   | Demonstrar habilidades em desenvolvimento Android moderno em um projeto de cadastro de usuários                                 |
+| **Arquitetura**                | MVVM (Model–View–ViewModel)                                                                                                     |
+| **Linguagem**                  | Kotlin                                                                                                                          |
+| **UI**                         | Jetpack Compose                                                                                                                 |
+| **Banco de Dados**             | Room Database                                                                                                                   |
+| **Gerenciamento Assíncrono**   | Coroutines                                                                                                                      |
+| **Injeção de Dependência**     | Koin                                                                                                                            |
+| **Carregamento de Imagens**    | Coil                                                                                                                            |
+| **Funcionalidades Principais** | Cadastro, atualização e ativação/desativação de usuários; captura de imagens; exibição de listas de usuários ativos/desativados |
+| **Diferencial**                | Código limpo, arquitetura escalável, integrações nativas com Jetpack Compose e performance otimizada para dispositivos móveis   |
+
+
+
 
 ## Arquitetura utilizada - M.V.V.M (Model-View-ViewModel)
 
