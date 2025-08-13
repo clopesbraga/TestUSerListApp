@@ -74,5 +74,3 @@ Tendo realizado o download do apk para utilizá-lo é necessário realizar os se
    - Baixe o arquivo Apk  
      
 
-## Observações do Projeto
-🚧  Em andamento 🚧
